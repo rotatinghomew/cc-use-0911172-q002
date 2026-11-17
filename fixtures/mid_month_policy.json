@@ -1,0 +1,66 @@
+{
+  "context": {
+    "benefit_cap": "800",
+    "capacity": 20,
+    "policies": [
+      {
+        "policy_id": "degree",
+        "effective_from": "2026-11-15",
+        "monthly_cap": "600",
+        "income_cap": "10000",
+        "exclusive_group": "housing"
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "lease-month-start",
+      "owner_id": "person-1",
+      "rent": "3000",
+      "months": 1,
+      "subsidy": "0",
+      "rent_reduction": "0",
+      "demand": 1,
+      "amount": "3000",
+      "effective_from": "2026-11-01",
+      "request_key": "month-start",
+      "period": "2026-11",
+      "lease_start": "2026-11-01",
+      "lease_end": "2026-11-30",
+      "household_income": "5000"
+    },
+    {
+      "id": "lease-mid-month",
+      "owner_id": "person-2",
+      "rent": "3000",
+      "months": 1,
+      "subsidy": "0",
+      "rent_reduction": "0",
+      "demand": 1,
+      "amount": "1500",
+      "effective_from": "2026-11-16",
+      "request_key": "mid-month",
+      "period": "2026-11",
+      "lease_start": "2026-11-16",
+      "lease_end": "2026-11-30",
+      "household_income": "5000"
+    },
+    {
+      "id": "lease-invalid",
+      "owner_id": "person-3",
+      "rent": "3000",
+      "months": 1,
+      "subsidy": "0",
+      "rent_reduction": "0",
+      "demand": 1,
+      "amount": "1500",
+      "effective_from": "2026-11-16",
+      "request_key": "invalid-lease",
+      "period": "2026-11",
+      "lease_start": "2026-11-16",
+      "lease_end": "2026-11-30",
+      "household_income": "5000",
+      "status": "cancelled"
+    }
+  ]
+}

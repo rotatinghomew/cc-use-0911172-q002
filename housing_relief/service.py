@@ -13,7 +13,7 @@ class ApplicationService:
     def process(self,payload:Mapping[str,Any],context:Mapping[str,Any],request_key:str) -> dict[str,Any]:
         digest=fingerprint({'payload':payload,'context':context})
         recalled=self.database.recalled('process',request_key,digest)
-        if recalled is not None:return recalled
+        if recalled is not None:return dict(recalled)
         result=self.engine.evaluate(payload,context)
         identifier=result.key
         response={'id':identifier,'accepted':result.accepted,'value':str(result.value),'reasons':list(result.reasons),'facts':dict(result.facts)}

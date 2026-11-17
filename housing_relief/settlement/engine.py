@@ -54,7 +54,10 @@ class SettlementEngine(SettlementEngineBase):
     def __init__(self): self.book=SettlementBook()
     def evaluate(self,item,context):
         if item.get('period') and context.get('policies'):
-            facts=self.book.settle(item,context); reasons=() if facts['balanced'] else ('journal_not_balanced',); return AnalysisResult(str(item.get('id','unknown')),not reasons,decimal.Decimal(facts['benefit']),reasons,facts)
+            facts=self.book.settle(item,context)
+            reasons=tuple(facts.get('reasons',())) if not facts.get('eligible',True) else ()
+            if not facts['balanced']:reasons=reasons+('journal_not_balanced',)
+            return AnalysisResult(str(item.get('id','unknown')),not reasons,decimal.Decimal(facts['benefit']),reasons,facts)
         key=str(item.get('id','unknown'));reasons=[];rent=decimal.Decimal(str(item.get('rent',item.get('amount',0))));months=decimal.Decimal(str(item.get('months',1)));gross=rent*months
         subsidy=decimal.Decimal(str(item.get('subsidy',0)));reduction=decimal.Decimal(str(item.get('rent_reduction',0)));cap=decimal.Decimal(str(context.get('benefit_cap',gross)))
         if item.get('mutually_exclusive') and subsidy>0 and reduction>0:reasons.append('mutually_exclusive_benefits')
